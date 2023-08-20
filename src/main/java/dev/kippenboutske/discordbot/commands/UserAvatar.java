@@ -20,7 +20,7 @@ public class UserAvatar extends ListenerAdapter {
             EmbedBuilder embed = new EmbedBuilder();
             embed.setTitle("Here is " + name + "'s avatar!");
             embed.setImage((url));
-            embed.setColor(Color.magenta);
+            embed.setColor(new Color(101, 47, 150));
 
             event.replyEmbeds(embed.build()).queue();
 
