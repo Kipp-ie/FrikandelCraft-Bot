@@ -1,5 +1,7 @@
 package dev.kippenboutske.discordbot;
 
+import dev.kippenboutske.discordbot.commands.Oogway;
+import dev.kippenboutske.discordbot.commands.SadCat;
 import dev.kippenboutske.discordbot.commands.TestCommand;
 import dev.kippenboutske.discordbot.commands.UserAvatar;
 import dev.kippenboutske.discordbot.listeners.JoinListener;
@@ -36,7 +38,9 @@ public class DiscordBot {
                 new MessageReceivedListener(),
                 // Commands
                 new TestCommand(),
-                new UserAvatar()
+                new UserAvatar(),
+                new SadCat(),
+                new Oogway()
             );
 
     }

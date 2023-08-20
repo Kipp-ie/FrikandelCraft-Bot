@@ -21,6 +21,8 @@ public class SlashCommandManager extends ListenerAdapter {
                         .addOption(OptionType.USER, "user", "Mention a user you want to grab the avatar from", true));
         commands.add(Commands.slash("sadcat", "Make a sad cat meme!")
                 .addOption(OptionType.STRING, "text", "Change the text of the Sad Cat meme"));
+        commands.add(Commands.slash("oogway", "Create an Oogway quote!")
+                .addOption(OptionType.STRING, "text", "Change the oogway quote!"));
 
 
         event.getGuild().updateCommands().addCommands(commands).queue();
