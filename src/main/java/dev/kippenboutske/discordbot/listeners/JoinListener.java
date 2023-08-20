@@ -3,9 +3,13 @@ package dev.kippenboutske.discordbot.listeners;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
+import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
+import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class JoinListener extends ListenerAdapter {
     @Override
@@ -24,10 +28,16 @@ public class JoinListener extends ListenerAdapter {
         embed.addField("Users", "There are now " + usercount + " members in this server!", false);
 
 
+
         event.getGuild().getTextChannelById("1142579445773901925").sendMessageEmbeds(embed.build()).queue();
+        String members = String.valueOf(event.getGuild().getMemberCount());
+        event.getGuild().getVoiceChannelById("1142861665738698953").getManager().setName("Total Users:" + members).queue();
 
+    }
 
-
-
+    @Override
+    public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
+        String members = String.valueOf(event.getGuild().getMemberCount());
+        event.getGuild().getVoiceChannelById("1142861665738698953").getManager().setName("Total Users:" + members).queue();
     }
 }
