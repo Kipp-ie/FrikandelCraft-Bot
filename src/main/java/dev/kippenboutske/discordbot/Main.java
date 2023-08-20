@@ -12,15 +12,13 @@ import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
 import javax.security.auth.login.LoginException;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class DiscordBot {
+public class Main {
 
     private Dotenv dotenv;
     private ShardManager shardManager;
 
-    public DiscordBot() throws LoginException {
+    public Main() throws LoginException {
         dotenv = Dotenv.configure().load();
         String token = dotenv.get("TOKEN");
 
@@ -50,7 +48,7 @@ public class DiscordBot {
 
     public static void main(String[] args) {
         try {
-            DiscordBot bot = new DiscordBot();
+            Main bot = new Main();
         } catch (LoginException e) {
             System.out.println("Bot token invalid!");
         }
