@@ -15,7 +15,7 @@ public class SlashCommandManager extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event) {
         List<CommandData> commands = new ArrayList<>();
 
-        commands.add(commands.slash("test"));
+        commands.add(commands.slash(name: "test"));
 
 
 
