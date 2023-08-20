@@ -4,6 +4,8 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.awt.*;
+
 public class Oogway extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -18,8 +20,11 @@ public class Oogway extends ListenerAdapter {
             EmbedBuilder embed = new EmbedBuilder();
             embed.setImage(url);
             embed.setTitle("Here is your oogway quote!");
+            embed.setColor(new Color(101, 47, 150));
 
             event.replyEmbeds(embed.build()).queue();
+
+            return;
 
         }
     }

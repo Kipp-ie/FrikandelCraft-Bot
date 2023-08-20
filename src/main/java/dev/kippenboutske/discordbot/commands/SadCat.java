@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 
+import java.awt.*;
+
 public class SadCat extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
@@ -19,8 +21,11 @@ public class SadCat extends ListenerAdapter {
             EmbedBuilder embed = new EmbedBuilder();
             embed.setImage(url);
             embed.setTitle("Here is your sad cat meme!");
+            embed.setColor(new Color(101, 47, 150));
 
             event.replyEmbeds(embed.build()).queue();
+
+            return;
 
         }
     }
