@@ -15,13 +15,9 @@ import javax.security.auth.login.LoginException;
 
 public class Main {
 
-    private Dotenv dotenv;
     private ShardManager shardManager;
 
     public Main() throws LoginException {
-        dotenv = Dotenv.configure().load();
-        String token = dotenv.get("TOKEN");
-
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("MTE0MjU3MTM1MTY2MDU3NjkxOQ.GfWG9u.yHMb0WuKHHp7XlSefxj98vPvOtNAiAuPHiadKM");
         builder.setStatus(OnlineStatus.ONLINE);
         builder.setActivity(Activity.watching("NebulaMC.xyz"));
