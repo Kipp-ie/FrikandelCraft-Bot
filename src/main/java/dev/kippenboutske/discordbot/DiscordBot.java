@@ -1,5 +1,7 @@
 package dev.kippenboutske.discordbot;
 
+import dev.kippenboutske.discordbot.commands.TestCommand;
+import dev.kippenboutske.discordbot.commands.UserAvatar;
 import dev.kippenboutske.discordbot.listeners.JoinListener;
 import dev.kippenboutske.discordbot.listeners.MessageReceivedListener;
 import dev.kippenboutske.discordbot.managers.SlashCommandManager;
@@ -31,7 +33,10 @@ public class DiscordBot {
                 new SlashCommandManager(),
                 // Listeners
                 new JoinListener(),
-                new MessageReceivedListener()
+                new MessageReceivedListener(),
+                // Commands
+                new TestCommand(),
+                new UserAvatar()
             );
 
     }
