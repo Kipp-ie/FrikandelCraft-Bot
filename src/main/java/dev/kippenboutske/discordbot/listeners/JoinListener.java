@@ -11,6 +11,7 @@ public class JoinListener extends ListenerAdapter {
     @Override
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
 
+        String usercount = String.valueOf(event.getGuild().getMemberCount());
         String memberName = event.getMember().getEffectiveName();
         String memberAvatarUrl = event.getUser().getAvatarUrl();
         String memberID = event.getMember().getId();
@@ -20,6 +21,8 @@ public class JoinListener extends ListenerAdapter {
         embed.setColor(new Color(101, 47, 150));
         embed.setThumbnail(memberAvatarUrl);
         embed.addField("Welcome", "Hello! Please read the rules first before chatting! Have Fun!", false);
+        embed.addField("Users", "There are now " + usercount + " members in this server!", false);
+
 
         event.getGuild().getTextChannelById("1142579445773901925").sendMessageEmbeds(embed.build()).queue();
 
