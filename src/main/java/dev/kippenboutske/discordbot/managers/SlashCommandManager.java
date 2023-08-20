@@ -24,7 +24,8 @@ public class SlashCommandManager extends ListenerAdapter {
         commands.add(Commands.slash("oogway", "Create an Oogway quote!")
                 .addOption(OptionType.STRING, "text", "Change the oogway quote!"));
         commands.add(Commands.slash("help", "Get a list of NebulaBot's commands!"));
-
+        commands.add(Commands.slash("petpet", "Petpet somebody!")
+                .addOption(OptionType.USER, "user", "Select a user to PETPET"));
 
         event.getGuild().updateCommands().addCommands(commands).queue();
 

@@ -38,7 +38,8 @@ public class Main {
                 new UserAvatar(),
                 new SadCat(),
                 new Oogway(),
-                new Help()
+                new Help(),
+                new PetPet()
             );
 
     }
