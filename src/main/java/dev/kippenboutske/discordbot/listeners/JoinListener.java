@@ -22,7 +22,7 @@ public class JoinListener extends ListenerAdapter {
         String memberAvatarUrl = event.getUser().getAvatarUrl();
         String memberID = event.getMember().getId();
 
-        event.getGuild().addRoleToMember(UserSnowflake.fromId(event.getMember().getId()), Objects.requireNonNull(event.getGuild().getRoleById("1119637633715408957")));
+        event.getGuild().addRoleToMember(UserSnowflake.fromId(event.getMember().getId()), Objects.requireNonNull(event.getGuild().getRoleById("1119637633715408957"))).queue();
 
         EmbedBuilder embed = new EmbedBuilder();
         embed.setTitle("Welcome in the NebulaMC Discord " + memberName + "!");

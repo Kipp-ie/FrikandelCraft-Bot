@@ -22,10 +22,7 @@ public class Main {
         dotenv = Dotenv.configure().load();
         String token = dotenv.get("TOKEN");
 
-
-
-
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("MTE0MjU3MTM1MTY2MDU3NjkxOQ.GfWG9u.yHMb0WuKHHp7XlSefxj98vPvOtNAiAuPHiadKM");
         builder.setStatus(OnlineStatus.ONLINE);
         builder.setActivity(Activity.watching("NebulaMC.xyz"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES);
