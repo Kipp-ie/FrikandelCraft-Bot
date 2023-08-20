@@ -16,7 +16,8 @@ public class SlashCommandManager extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event) {
         List<CommandData> commands = new ArrayList<>();
 
-        commands.add(Commands.slash("test", "test command")); // dit is echt pure nachtmerrie deze oplossing ik heb hier te lang over gedaan en te veel random variable voor aangemaakt fucking hell aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.
+        commands.add(Commands.slash("test", "test command"));
+        commands.add(Commands.slash( "avatar", "Grab the avatar by pinging a user!") );// dit is echt pure nachtmerrie deze oplossing ik heb hier te lang over gedaan en te veel random variable voor aangemaakt fucking hell aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.
 
 
 
