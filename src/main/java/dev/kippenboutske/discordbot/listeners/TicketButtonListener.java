@@ -28,10 +28,12 @@ public class TicketButtonListener extends ListenerAdapter {
             event.reply("Where do you need help with?").setEphemeral(true)
                     .addActionRow(
                             StringSelectMenu.create("ticket-subject")
-                                    .addOption("Bugs", "bugs", "Report bugs, or ask questions about them")
                                     .addOptions(SelectOption.of("Questions", "questions")
                                             .withEmoji(Emoji.fromUnicode("U+2753"))
                                             .withDescription("Ask a question about NebulaMC!"))
+                                    .addOptions(SelectOption.of("Bugs", "Bugs")
+                                            .withEmoji(Emoji.fromUnicode("U+1F41B"))
+                                            .withDescription("Did you encounter a bug that you want to report?"))
                                     .addOption("Purchases", "purchases", "Ask or report about purchases")// SelectOption with only the label, value, and description
                                     .build())
                     .queue();
@@ -80,6 +82,7 @@ public class TicketButtonListener extends ListenerAdapter {
             embed.addField("Name", event.getMember().getEffectiveName(), false);
             embed.addField("Subject", event.getValues().get(0), false);
             embed.addField("Time", event.getTimeCreated().toString(), false);
+            embed.setColor(new Color(101, 47, 150));
 
 
             guild.createTextChannel("Ticket-" + member.getEffectiveName().toLowerCase() + "-" + event.getValues().get(0), guild.getCategoryById("1143195932075229224"))

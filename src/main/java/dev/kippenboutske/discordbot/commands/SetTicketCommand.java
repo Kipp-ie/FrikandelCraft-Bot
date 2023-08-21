@@ -16,9 +16,9 @@ public class SetTicketCommand extends ListenerAdapter {
         if(event.getName().equals("settickets")){
             if(event.getMember().isOwner()){
                 EmbedBuilder embed = new EmbedBuilder();
-                embed.setColor(new Color(217,107,107));
                 embed.setTitle("Create a ticket");
                 embed.setDescription("Click on the button below to open a support ticket.");
+                embed.setColor(new Color(101, 47, 150));
                 event.getChannel().sendMessageEmbeds(embed.build())
                         .setActionRow(
                                 Button.success("openTicket","Open a Ticket")

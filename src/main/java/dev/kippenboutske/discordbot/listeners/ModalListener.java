@@ -5,6 +5,8 @@ import net.dv8tion.jda.api.events.interaction.ModalInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
+
 public class ModalListener extends ListenerAdapter {
     @Override
     public void onModalInteraction(@NotNull ModalInteractionEvent event) {
@@ -24,7 +26,9 @@ public class ModalListener extends ListenerAdapter {
 
             EmbedBuilder dmuser = new EmbedBuilder();
             dmuser.setTitle("Ticket Closed");
-            dmuser.setDescription("Your ticket has been closed,");
+            dmuser.setDescription("Your ticket has been closed, you can make a new ticket when you need support again!");
+            dmuser.addField("Support", "We hope we could help you with your issue! Remember to have fun!", false);
+            dmuser.setColor(new Color(101, 47, 150));
 
 
             event.getUser().openPrivateChannel().flatMap(channel -> channel.sendMessageEmbeds(dmuser.build())).queue();
