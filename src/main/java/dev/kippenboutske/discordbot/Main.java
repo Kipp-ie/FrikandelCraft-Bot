@@ -3,6 +3,7 @@ package dev.kippenboutske.discordbot;
 import dev.kippenboutske.discordbot.commands.*;
 import dev.kippenboutske.discordbot.listeners.JoinListener;
 import dev.kippenboutske.discordbot.listeners.MessageReceivedListener;
+import dev.kippenboutske.discordbot.listeners.TicketButtonListener;
 import dev.kippenboutske.discordbot.managers.SlashCommandManager;
 import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -34,7 +35,9 @@ public class Main {
                 new UserAvatar(),
                 new SadCat(),
                 new Oogway(),
-                new Help()
+                new Help(),
+                new SetTicketCommand(),
+                new TicketButtonListener()
             );
 
     }
