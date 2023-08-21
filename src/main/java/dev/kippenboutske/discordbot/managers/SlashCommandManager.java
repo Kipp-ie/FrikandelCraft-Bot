@@ -2,7 +2,6 @@ package dev.kippenboutske.discordbot.managers;
 
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.interactions.commands.Command;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -25,7 +24,7 @@ public class SlashCommandManager extends ListenerAdapter {
         commands.add(Commands.slash("oogway", "Create an Oogway quote!")
                 .addOption(OptionType.STRING, "text", "Change the oogway quote!"));
         commands.add(Commands.slash("help", "Get a list of NebulaBot's commands!"));
-        commands.add(Commands.slash("settickets", "Set the ticket menu"));
+        commands.add(Commands.slash("settickets", "Create a ticket embed"));
 
         event.getGuild().updateCommands().addCommands(commands).queue();
 

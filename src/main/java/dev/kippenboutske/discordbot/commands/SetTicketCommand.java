@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.components.buttons.Button;
+import net.dv8tion.jda.api.interactions.components.selections.StringSelectMenu;
 
 import java.awt.*;
 
@@ -22,7 +23,7 @@ public class SetTicketCommand extends ListenerAdapter {
                         .setActionRow(
                                 Button.success("openTicket","Open a Ticket")
                                         .withEmoji(Emoji.fromUnicode("U+1F3AB"))).queue();
-                event.reply("Ticket Embed Placed!").setEphemeral(true).queue();
+
             } else {
                 event.reply("Sorry, you don't have permission for this!").setEphemeral(true).queue();
 

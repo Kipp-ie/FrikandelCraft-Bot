@@ -3,6 +3,7 @@ package dev.kippenboutske.discordbot;
 import dev.kippenboutske.discordbot.commands.*;
 import dev.kippenboutske.discordbot.listeners.JoinListener;
 import dev.kippenboutske.discordbot.listeners.MessageReceivedListener;
+import dev.kippenboutske.discordbot.listeners.ModalListener;
 import dev.kippenboutske.discordbot.listeners.TicketButtonListener;
 import dev.kippenboutske.discordbot.managers.SlashCommandManager;
 import io.github.cdimascio.dotenv.Dotenv;
@@ -30,14 +31,16 @@ public class Main {
                 // Listeners
                 new JoinListener(),
                 new MessageReceivedListener(),
+                new TicketButtonListener(),
+                new ModalListener(),
                 // Commands
                 new TestCommand(),
                 new UserAvatar(),
                 new SadCat(),
                 new Oogway(),
                 new Help(),
-                new SetTicketCommand(),
-                new TicketButtonListener()
+                new SetTicketCommand()
+
             );
 
     }
