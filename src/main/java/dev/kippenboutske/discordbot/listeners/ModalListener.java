@@ -15,19 +15,30 @@ public class ModalListener extends ListenerAdapter {
             String staff = event.getValue("staff").getAsString();
             String number = event.getValue("number").getAsString();
 
-            EmbedBuilder feedbackembed = new EmbedBuilder()
-                    .setTitle("Feedback embed");
+            //Creating a embed to be sent to the feedback channel
+            EmbedBuilder feedbackembed = new EmbedBuilder();
+                    feedbackembed.setTitle("Feedback embed");
+                    feedbackembed.addField("Name", name, false);
+                    feedbackembed.addField("Staff", staff, false);
+                    feedbackembed.addField("Rating", number, false);
+                    feedbackembed.setColor(new Color(101, 47, 150));
 
+
+            //Getting the feedback channel by ID
             event.getGuild().getTextChannelById("1143235851149652080").sendMessageEmbeds(feedbackembed.build()).queue();
 
+            //Tbh this doesn't do anything
             event.reply("Thanks for your request!").setEphemeral(true).queue();
 
+            //Deleting the ticket
             event.getInteraction().getChannel().delete().queue();
 
+            //Dm's the user after closing ticket
             EmbedBuilder dmuser = new EmbedBuilder();
             dmuser.setTitle("Ticket Closed");
             dmuser.setDescription("Your ticket has been closed, you can make a new ticket when you need support again!");
             dmuser.addField("Support", "We hope we could help you with your issue! Remember to have fun!", false);
+            dmuser.addField("Feedback", "Your feedback has been sent to our staff team, we appreciate it!", false);
             dmuser.setColor(new Color(101, 47, 150));
 
 
