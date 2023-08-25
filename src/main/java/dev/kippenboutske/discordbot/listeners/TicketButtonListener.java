@@ -39,8 +39,18 @@ public class TicketButtonListener extends ListenerAdapter {
                     .queue();
 
         } else if (event.getButton().getId().equals("closeButton")) {
-            if (event.getMember().getRoles().equals(event.getGuild().getRoleById("1144661426208776282"))) {
+            if (event.getMember().getRoles().contains(event.getGuild().getRoleById("1144661426208776282"))) {
                 event.getInteraction().getChannel().delete().queue();
+                EmbedBuilder dmuser = new EmbedBuilder();
+                dmuser.setTitle("Ticket Closed");
+                dmuser.setDescription("Your ticket has been closed by a support staff, you can make a new ticket when you need support again!");
+                dmuser.addField("Support", "We hope we could help you with your issue! Remember to have fun!", false);
+                dmuser.addField("Feedback", "Your feedback has been sent to our staff team, we appreciate it!", false);
+                dmuser.addField("Support Staff", event.getMember().getEffectiveName(), false);
+                dmuser.setColor(new Color(101, 47, 150));
+
+
+                event.getInteraction().getUser().openPrivateChannel().flatMap(channel -> channel.sendMessageEmbeds(dmuser.build())).queue();
             } else {
                 TextInput subject = TextInput.create("name", "What's your username?", TextInputStyle.SHORT)
                         .setPlaceholder("Example: @kippenboutske")
