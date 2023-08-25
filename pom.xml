@@ -4,7 +4,7 @@
 
     <groupId>dev.kippenboutske.discordbot</groupId>
     <artifactId>NebulaBot</artifactId>
-    <version>1.1</version>
+    <version>2.0</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

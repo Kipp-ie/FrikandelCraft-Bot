@@ -39,33 +39,35 @@ public class TicketButtonListener extends ListenerAdapter {
                     .queue();
 
         } else if (event.getButton().getId().equals("closeButton")) {
+            if (event.getMember().getRoles().equals(event.getGuild().getRoleById("1144661426208776282"))) {
+                event.getInteraction().getChannel().delete().queue();
+            } else {
+                TextInput subject = TextInput.create("name", "What's your username?", TextInputStyle.SHORT)
+                        .setPlaceholder("Example: @kippenboutske")
+                        .setMinLength(1)
+                        .setMaxLength(40) // or setRequiredRange(10, 100)
+                        .build();
 
+                TextInput staff = TextInput.create("staff", "Who helped you today??", TextInputStyle.SHORT)
+                        .setPlaceholder("This can be a name or a @, please leave blank if you don't know anymore!")
+                        .setMinLength(0)
+                        .setMaxLength(50) // or setRequiredRange(10, 100)
+                        .build();
 
-            TextInput subject = TextInput.create("name", "What's your username?", TextInputStyle.SHORT)
-                    .setPlaceholder("Example: @kippenboutske")
-                    .setMinLength(1)
-                    .setMaxLength(40) // or setRequiredRange(10, 100)
-                    .build();
+                TextInput number = TextInput.create("number", "1 - 10 How do you rate your service?", TextInputStyle.SHORT)
+                        .setPlaceholder("Pick a number 1 - 10")
+                        .setMinLength(1)
+                        .setMaxLength(50) // or setRequiredRange(10, 100)
+                        .build();
 
-            TextInput staff = TextInput.create("staff", "Who helped you today??", TextInputStyle.SHORT)
-                    .setPlaceholder("This can be a name or a @, please leave blank if you don't know anymore!")
-                    .setMinLength(0)
-                    .setMaxLength(50) // or setRequiredRange(10, 100)
-                    .build();
+                Modal modal = Modal.create("fmodal", "Feedback")
+                        .addComponents(ActionRow.of(subject), ActionRow.of(staff), ActionRow.of(number))
+                        .build();
 
-            TextInput number = TextInput.create("number", "1 - 10 How do you rate your service?", TextInputStyle.SHORT)
-                    .setPlaceholder("Pick a number 1 - 10")
-                    .setMinLength(1)
-                    .setMaxLength(50) // or setRequiredRange(10, 100)
-                    .build();
+                event.replyModal(modal).queue();
 
-            Modal modal = Modal.create("fmodal", "Feedback")
-                    .addComponents(ActionRow.of(subject), ActionRow.of(staff), ActionRow.of(number))
-                    .build();
-
-            event.replyModal(modal).queue();
-
-            return;
+                return;
+            }
         }
     }
 

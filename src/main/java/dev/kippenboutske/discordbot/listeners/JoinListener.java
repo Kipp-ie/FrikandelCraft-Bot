@@ -1,17 +1,13 @@
 package dev.kippenboutske.discordbot.listeners;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRemoveEvent;
-import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
 import java.util.Objects;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class JoinListener extends ListenerAdapter {
     @Override
@@ -35,13 +31,13 @@ public class JoinListener extends ListenerAdapter {
 
         event.getGuild().getTextChannelById("1142916465503248516").sendMessageEmbeds(embed.build()).queue();
         String members = String.valueOf(event.getGuild().getMemberCount());
-        event.getGuild().getVoiceChannelById("1142916042889384146").getManager().setName("Total Users:" + members).queue();
+        event.getGuild().getVoiceChannelById("1142916042889384146").getManager().setName("Total Members:" + members).queue();
 
     }
 
     @Override
     public void onGuildMemberRemove(GuildMemberRemoveEvent event) {
         String members = String.valueOf(event.getGuild().getMemberCount());
-        event.getGuild().getVoiceChannelById("1142916042889384146").getManager().setName("Total Users:" + members).queue();
+        event.getGuild().getVoiceChannelById("1142916042889384146").getManager().setName("Total Members:" + members).queue();
     }
 }

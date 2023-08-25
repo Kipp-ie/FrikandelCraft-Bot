@@ -6,7 +6,6 @@ import dev.kippenboutske.discordbot.listeners.MessageReceivedListener;
 import dev.kippenboutske.discordbot.listeners.ModalListener;
 import dev.kippenboutske.discordbot.listeners.TicketButtonListener;
 import dev.kippenboutske.discordbot.managers.SlashCommandManager;
-import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -39,7 +38,8 @@ public class Main {
                 new SadCat(),
                 new Oogway(),
                 new Help(),
-                new SetTicketCommand()
+                new SetTicketCommand(),
+                new Embed()
 
             );
 
