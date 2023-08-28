@@ -22,64 +22,6 @@ import java.util.EnumSet;
 
 public class TicketButtonListener extends ListenerAdapter {
 
-    @Override
-    public void onButtonInteraction(ButtonInteractionEvent event) {
-        if (event.getButton().getId().equals("openTicket")) {
-            event.reply("Where do you need help with?").setEphemeral(true)
-                    .addActionRow(
-                            StringSelectMenu.create("ticket-subject")
-                                    .addOptions(SelectOption.of("Questions", "questions")
-                                            .withEmoji(Emoji.fromUnicode("U+2753"))
-                                            .withDescription("Ask a question about NebulaMC!"))
-                                    .addOptions(SelectOption.of("Bugs", "Bugs")
-                                            .withEmoji(Emoji.fromUnicode("U+1F41B"))
-                                            .withDescription("Did you encounter a bug that you want to report?"))
-                                    .addOption("Purchases", "purchases", "Ask or report about purchases")// SelectOption with only the label, value, and description
-                                    .build())
-                    .queue();
-
-        } else if (event.getButton().getId().equals("closeButton")) {
-            if (event.getMember().getRoles().contains(event.getGuild().getRoleById("1144661426208776282"))) {
-                event.getInteraction().getChannel().delete().queue();
-                EmbedBuilder dmuser = new EmbedBuilder();
-                dmuser.setTitle("Ticket Closed");
-                dmuser.setDescription("Your ticket has been closed by a support staff, you can make a new ticket when you need support again!");
-                dmuser.addField("Support", "We hope we could help you with your issue! Remember to have fun!", false);
-                dmuser.addField("Feedback", "Your feedback has been sent to our staff team, we appreciate it!", false);
-                dmuser.addField("Support Staff", event.getMember().getEffectiveName(), false);
-                dmuser.setColor(new Color(101, 47, 150));
-
-
-                event.getInteraction().getUser().openPrivateChannel().flatMap(channel -> channel.sendMessageEmbeds(dmuser.build())).queue();
-            } else {
-                TextInput subject = TextInput.create("name", "What's your username?", TextInputStyle.SHORT)
-                        .setPlaceholder("Example: @kippenboutske")
-                        .setMinLength(1)
-                        .setMaxLength(40) // or setRequiredRange(10, 100)
-                        .build();
-
-                TextInput staff = TextInput.create("staff", "Who helped you today??", TextInputStyle.SHORT)
-                        .setPlaceholder("This can be a name or a @, please leave blank if you don't know anymore!")
-                        .setMinLength(0)
-                        .setMaxLength(50) // or setRequiredRange(10, 100)
-                        .build();
-
-                TextInput number = TextInput.create("number", "1 - 10 How do you rate your service?", TextInputStyle.SHORT)
-                        .setPlaceholder("Pick a number 1 - 10")
-                        .setMinLength(1)
-                        .setMaxLength(50) // or setRequiredRange(10, 100)
-                        .build();
-
-                Modal modal = Modal.create("fmodal", "Feedback")
-                        .addComponents(ActionRow.of(subject), ActionRow.of(staff), ActionRow.of(number))
-                        .build();
-
-                event.replyModal(modal).queue();
-
-                return;
-            }
-        }
-    }
 
     @Override
     public void onStringSelectInteraction(@NotNull StringSelectInteractionEvent event) {
@@ -109,6 +51,57 @@ public class TicketButtonListener extends ListenerAdapter {
 
     }
 
+    @Override
+    public void onButtonInteraction(ButtonInteractionEvent event) {
+        if (event.getButton().getId().equals("openTicket")) {
+            event.reply("Where do you need help with?").setEphemeral(true)
+                    .addActionRow(
+                            StringSelectMenu.create("ticket-subject")
+                                    .addOptions(SelectOption.of("Questions", "questions")
+                                            .withEmoji(Emoji.fromUnicode("U+2753"))
+                                            .withDescription("Ask a question about NebulaMC!"))
+                                    .addOptions(SelectOption.of("Bugs", "Bugs")
+                                            .withEmoji(Emoji.fromUnicode("U+1F41B"))
+                                            .withDescription("Did you encounter a bug that you want to report?"))
+                                    .addOption("Purchases", "purchases", "Ask or report about purchases")// SelectOption with only the label, value, and description
+                                    .build())
+                    .queue();
+
+
+
+        } else if (event.getButton().getId().equals("closeButton")) {
+            if (event.getMember().getRoles().contains(event.getGuild().getRoleById("1144661426208776282"))) {
+                event.getInteraction().getChannel().delete().queue();
+
+            } else {
+                TextInput subject = TextInput.create("name", "What's your username?", TextInputStyle.SHORT)
+                        .setPlaceholder("Example: @kippenboutske")
+                        .setMinLength(1)
+                        .setMaxLength(40) // or setRequiredRange(10, 100)
+                        .build();
+
+                TextInput staff = TextInput.create("staff", "Who helped you today??", TextInputStyle.SHORT)
+                        .setPlaceholder("This can be a name or a @, please leave blank if you don't know anymore!")
+                        .setMinLength(0)
+                        .setMaxLength(50) // or setRequiredRange(10, 100)
+                        .build();
+
+                TextInput number = TextInput.create("number", "1 - 10 How do you rate your service?", TextInputStyle.SHORT)
+                        .setPlaceholder("Pick a number 1 - 10")
+                        .setMinLength(1)
+                        .setMaxLength(50) // or setRequiredRange(10, 100)
+                        .build();
+
+                Modal modal = Modal.create("fmodal", "Feedback")
+                        .addComponents(ActionRow.of(subject), ActionRow.of(staff), ActionRow.of(number))
+                        .build();
+
+                event.replyModal(modal).queue();
+
+                return;
+            }
+        }
+    }
     private Button closeButton() {
         return net.dv8tion.jda.api.interactions.components.buttons.Button.danger("closeButton", "Close");
     }

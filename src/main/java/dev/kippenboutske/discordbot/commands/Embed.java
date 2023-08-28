@@ -12,16 +12,17 @@ import java.awt.*;
 public class Embed extends ListenerAdapter {
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
-        event.reply("Admin - Embed selection menu")
-                .addActionRow(
-                        StringSelectMenu.create("embed-select")
-                                .addOption("Rules", "rules", "Rules")
-                                .addOption("Info", "info", "Information embed")// SelectOption with only the label, value, and description
-                                .build())
-                .queue();
+        if (event.getName().equals("embed")) {
+            event.reply("Admin - Embed selection menu")
+                    .addActionRow(
+                            StringSelectMenu.create("embed-select")
+                                    .addOption("Rules", "rules", "Rules")
+                                    .addOption("Info", "info", "Information embed")// SelectOption with only the label, value, and description
+                                    .build())
+                    .queue();
 
         }
-
+    }
     @Override
     public void onStringSelectInteraction(@NotNull StringSelectInteractionEvent event) {
         if(event.getValues().get(0).equals("rules")){

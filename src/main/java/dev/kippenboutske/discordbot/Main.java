@@ -1,10 +1,7 @@
 package dev.kippenboutske.discordbot;
 
 import dev.kippenboutske.discordbot.commands.*;
-import dev.kippenboutske.discordbot.listeners.JoinListener;
-import dev.kippenboutske.discordbot.listeners.MessageReceivedListener;
-import dev.kippenboutske.discordbot.listeners.ModalListener;
-import dev.kippenboutske.discordbot.listeners.TicketButtonListener;
+import dev.kippenboutske.discordbot.listeners.*;
 import dev.kippenboutske.discordbot.managers.SlashCommandManager;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
@@ -16,12 +13,16 @@ import javax.security.auth.login.LoginException;
 
 public class Main {
 
+
+
     private ShardManager shardManager;
 
-    public Main() throws LoginException {
+    public Main() throws LoginException, InterruptedException {
+
+
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("MTE0MjU3MTM1MTY2MDU3NjkxOQ.GfWG9u.yHMb0WuKHHp7XlSefxj98vPvOtNAiAuPHiadKM");
-        builder.setStatus(OnlineStatus.ONLINE);
-        builder.setActivity(Activity.watching("NebulaMC.xyz"));
+        builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
+        builder.setActivity(Activity.playing("NebulaMC Beta"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES);
         shardManager = builder.build();
         shardManager.addEventListener(
@@ -29,9 +30,11 @@ public class Main {
                 new SlashCommandManager(),
                 // Listeners
                 new JoinListener(),
+                new ApplyButtonListener(),
                 new MessageReceivedListener(),
                 new TicketButtonListener(),
                 new ModalListener(),
+                // Lavalink
                 // Commands
                 new TestCommand(),
                 new UserAvatar(),
@@ -39,9 +42,11 @@ public class Main {
                 new Oogway(),
                 new Help(),
                 new SetTicketCommand(),
-                new Embed()
+                new Embed(),
+                new Apply()
 
             );
+
 
     }
 
@@ -50,6 +55,8 @@ public class Main {
             Main bot = new Main();
         } catch (LoginException e) {
             System.out.println("Bot token invalid!");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
