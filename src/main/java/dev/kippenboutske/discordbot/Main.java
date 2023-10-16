@@ -20,7 +20,7 @@ public class Main {
     public Main() throws LoginException, InterruptedException {
 
 
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("MTE0MjU3MTM1MTY2MDU3NjkxOQ.GfWG9u.yHMb0WuKHHp7XlSefxj98vPvOtNAiAuPHiadKM");
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("MTE0MjU3MTM1MTY2MDU3NjkxOQ.Gwi_DD.qh3oxqt7BOd2LugOalP9Ll51IaIXkaz9S-Ugrs");
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.setActivity(Activity.playing("NebulaMC Beta"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES);
