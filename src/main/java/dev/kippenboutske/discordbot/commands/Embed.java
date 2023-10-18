@@ -36,7 +36,7 @@ public class Embed extends ListenerAdapter {
                     "8. Do not blackmail other users or staff members.\n" +
                     "9. Please follow the Discord TOS (Terms of Services).";
         EmbedBuilder ruleembed = new EmbedBuilder();
-        ruleembed.setTitle("NebulaMC - Rules");
+        ruleembed.setTitle("LunarisMC - Rules");
         ruleembed.addField("Rules", rules, false);
         ruleembed.addField("Consequenses", "When breaking any of the rules staff will choose a suitable punishment.", false);
         ruleembed.setColor(new Color(101, 47, 150));

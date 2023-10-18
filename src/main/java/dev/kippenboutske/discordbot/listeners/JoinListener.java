@@ -21,7 +21,7 @@ public class JoinListener extends ListenerAdapter {
         event.getGuild().addRoleToMember(UserSnowflake.fromId(event.getMember().getId()), Objects.requireNonNull(event.getGuild().getRoleById("1119637633715408957"))).queue();
 
         EmbedBuilder embed = new EmbedBuilder();
-        embed.setTitle("Welcome in the NebulaMC Discord " + memberName + "!");
+        embed.setTitle("Welcome in the LunarisMC Discord " + memberName + "!");
         embed.setColor(new Color(101, 47, 150));
         embed.setThumbnail(memberAvatarUrl);
         embed.addField("Welcome", "Hello! Please read the rules first before chatting! Have Fun!", false);

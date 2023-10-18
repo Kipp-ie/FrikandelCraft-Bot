@@ -19,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.util.EnumSet;
+import java.util.Objects;
 
 public class TicketButtonListener extends ListenerAdapter {
 
@@ -29,24 +30,26 @@ public class TicketButtonListener extends ListenerAdapter {
             Guild guild = event.getGuild();
             Member member = event.getMember();
 
-            EmbedBuilder embed = new EmbedBuilder();
-            embed.setColor(Color.GREEN);
-            embed.setTitle("Ticket");
-            embed.setDescription("A staff member will be with you shortly!");
-            embed.addField("Name", event.getMember().getEffectiveName(), false);
-            embed.addField("Subject", event.getValues().get(0), false);
-            embed.addField("Time", event.getTimeCreated().toString(), false);
-            embed.setColor(new Color(101, 47, 150));
+            if (Objects.requireNonNull(Objects.requireNonNull(event.getGuild()).getCategoryById("1143195932075229224")).getChannels().toString().contains("ticket-" + member.getEffectiveName().toLowerCase())) {
+                event.reply("You already have a ticket!").setEphemeral(true).queue();
+            } else {
+                EmbedBuilder embed = new EmbedBuilder();
+                embed.setColor(Color.GREEN);
+                embed.setTitle("Ticket");
+                embed.setDescription("A staff member will be with you shortly!");
+                embed.addField("Name", event.getMember().getEffectiveName(), false);
+                embed.addField("Subject", event.getValues().get(0), false);
+                embed.addField("Time", event.getTimeCreated().toString(), false);
+                embed.setColor(new Color(101, 47, 150));
 
 
-            guild.createTextChannel("Ticket-" + member.getEffectiveName().toLowerCase() + "-" + event.getValues().get(0), guild.getCategoryById("1143195932075229224"))
-                    .addPermissionOverride(member, EnumSet.of(Permission.VIEW_CHANNEL), null)
-                    .addPermissionOverride(guild.getRoleById("1123716404655423659"), EnumSet.of(Permission.VIEW_CHANNEL, Permission.MESSAGE_HISTORY), null)
-                    .addPermissionOverride(guild.getPublicRole(), null, EnumSet.of(Permission.VIEW_CHANNEL))
-                    .complete().sendMessageEmbeds(embed.build()).setActionRow(closeButton()).queue();
-
-
-            event.reply("Your ticket has been created!").setEphemeral(true).queue();
+                guild.createTextChannel("Ticket-" + member.getEffectiveName().toLowerCase(), guild.getCategoryById("1143195932075229224"))
+                        .addPermissionOverride(member, EnumSet.of(Permission.VIEW_CHANNEL), null)
+                        .addPermissionOverride(guild.getRoleById("1123716404655423659"), EnumSet.of(Permission.VIEW_CHANNEL, Permission.MESSAGE_HISTORY), null)
+                        .addPermissionOverride(guild.getPublicRole(), null, EnumSet.of(Permission.VIEW_CHANNEL))
+                        .complete().sendMessageEmbeds(embed.build()).setActionRow(closeButton()).queue();
+                event.reply("Your ticket has been created!").setEphemeral(true).queue();
+            }
         }
 
     }
@@ -59,7 +62,7 @@ public class TicketButtonListener extends ListenerAdapter {
                             StringSelectMenu.create("ticket-subject")
                                     .addOptions(SelectOption.of("Questions", "questions")
                                             .withEmoji(Emoji.fromUnicode("U+2753"))
-                                            .withDescription("Ask a question about NebulaMC!"))
+                                            .withDescription("Ask a question about LunarisMC!"))
                                     .addOptions(SelectOption.of("Bugs", "Bugs")
                                             .withEmoji(Emoji.fromUnicode("U+1F41B"))
                                             .withDescription("Did you encounter a bug that you want to report?"))
