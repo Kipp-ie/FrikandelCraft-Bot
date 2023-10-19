@@ -8,7 +8,9 @@ This bot is not designed for public use, you may edit everything. This repo is j
 
 We hope we were able to help your journey!
 
+Do we offer support for this repo? Yes! We do, just send a message to me (Kippie) on Discord! I will be happy to help you and explain how we coded this and what the code really does!
 
 
-<3 LunarisMC
+
+<3 from LunarisMC Development Team
 
