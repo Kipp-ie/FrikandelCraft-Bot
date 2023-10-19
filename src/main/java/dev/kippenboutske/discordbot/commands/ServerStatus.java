@@ -4,9 +4,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageHistory;
+import net.dv8tion.jda.api.entities.ScheduledEvent;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
@@ -24,13 +24,31 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class ServerStatus extends ListenerAdapter {
+    private ScheduledExecutorService scheduler;
+    private SlashCommandInteractionEvent scheduledEvent;
+
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if (event.getName().equals("serverstatus")) {
-            ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
-            String sURL = "https://api.mcstatus.io/v2/status/java/play.nebulamc.xyz"; // URL for the API
+            // Store the event for later use
+            scheduledEvent = event;
 
-            // Connect to the URL
+            // Create a ScheduledExecutorService with a single thread
+            scheduler = Executors.newSingleThreadScheduledExecutor();
+
+            // Schedule a task to run every 10 seconds
+            scheduler.scheduleAtFixedRate(() -> updateServerStatus(event), 0, 10, TimeUnit.SECONDS);
+        }
+    }
+
+    private void updateServerStatus(SlashCommandInteractionEvent event) {
+        if (scheduledEvent == null) {
+            // Handle the case where scheduledEvent is not set (e.g., if the command wasn't invoked)
+            return;
+        }
+
+        try {
+            String sURL = "https://api.mcstatus.io/v2/status/java/play.nebulamc.xyz"; // URL for the API
             URL url = null;
             try {
                 url = new URL(sURL);
@@ -62,8 +80,8 @@ public class ServerStatus extends ListenerAdapter {
             JsonObject rootObject = root.getAsJsonObject();
             String online2 = rootObject.get("online").getAsString();
             MessageHistory history = MessageHistory.getHistoryFromBeginning(event.getGuild().getTextChannelById("1164655353137483928")).complete();
-            List<Message> mess = history.getRetrievedHistory();
-            for(Message m: mess){
+            List<Message> messagelist = history.getRetrievedHistory();
+            for(Message m: messagelist){
                 m.delete().queue();
             }
 
@@ -98,10 +116,8 @@ public class ServerStatus extends ListenerAdapter {
             event.getGuild().getTextChannelById("1164655353137483928").sendMessageEmbeds(embed.build()).queue();
 
 
-            // Schedule a task to run every 10 seconds
-            scheduler.scheduleAtFixedRate(() -> {
+        } finally {
 
-            }, 0, 10, TimeUnit.SECONDS);
         }
     }
 }
