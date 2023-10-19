@@ -33,6 +33,7 @@ public class Apply extends ListenerAdapter {
                             Button.success("mediaRole", "Apply for a media role")
                                     .withEmoji(Emoji.fromUnicode("U+1F3A5"))).queue();
         } else {
+
             event.reply("You don't have the permissions for this!").queue();
         }
 

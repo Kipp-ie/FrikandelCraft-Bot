@@ -46,7 +46,8 @@ public class Main {
                 new Help(),
                 new SetTicketCommand(),
                 new Embed(),
-                new Apply()
+                new Apply(),
+                new ServerStatus()
 
             );
 

@@ -27,6 +27,7 @@ public class SlashCommandManager extends ListenerAdapter {
         commands.add(Commands.slash("settickets", "Create a ticket embed"));
         commands.add(Commands.slash("embed", "Admin command to place embeds"));
         commands.add(Commands.slash("setapply", "Admin command to place embed apply's"));
+        commands.add(Commands.slash("serverstatus", "Used to place a server status in the status channel"));
 
         event.getGuild().updateCommands().addCommands(commands).queue();
 
