@@ -3,6 +3,7 @@ package dev.kippenboutske.discordbot;
 import dev.kippenboutske.discordbot.commands.*;
 import dev.kippenboutske.discordbot.listeners.*;
 import dev.kippenboutske.discordbot.managers.SlashCommandManager;
+import io.github.cdimascio.dotenv.Dotenv;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
@@ -18,9 +19,11 @@ public class Main {
     private ShardManager shardManager;
 
     public Main() throws LoginException, InterruptedException {
+        Dotenv dotenv = Dotenv.load();
+        String token = dotenv.get("TOKEN");
 
 
-        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault("MTE0MjU3MTM1MTY2MDU3NjkxOQ.Gwi_DD.qh3oxqt7BOd2LugOalP9Ll51IaIXkaz9S-Ugrs");
+        DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.setActivity(Activity.watching("Happy Spooktober!"));
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES);
