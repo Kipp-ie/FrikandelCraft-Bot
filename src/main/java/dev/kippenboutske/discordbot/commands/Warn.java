@@ -110,13 +110,13 @@ public class Warn extends ListenerAdapter {
                                 embed.setTitle("Warn");
                                 embed.setDescription(option.getAsUser().getAsMention() + " has been warned he has received 15 minutes of timeout");
                                 embed.addField("Warnings", "You now have 2 warnings!", true);
-                                event.getGuild().getMemberById(option.getAsMember().getId()).timeoutFor(15, TimeUnit.MINUTES);
+                                event.getGuild().timeoutFor(UserSnowflake.fromId(option.getAsMember().getId()), 15, TimeUnit.MINUTES).queue();
 
                                 event.replyEmbeds(embed.build()).queue();
 
                             } else if (myReader2.nextLine().equals("2")) {
                                 System.out.print("It's a 2");
-                                event.getGuild().getMemberById(option.getAsMember().getId()).ban(7, TimeUnit.DAYS);
+                                event.getGuild().ban(UserSnowflake.fromId(option.getAsMember().getId()), 7, TimeUnit.MINUTES).queue();
                                 Files.delete(Path.of("Data/" + option.getAsUser().getId() + "/warn.txt"));
                                 EmbedBuilder embed = new EmbedBuilder();
                                 embed.setTitle("Warn");
