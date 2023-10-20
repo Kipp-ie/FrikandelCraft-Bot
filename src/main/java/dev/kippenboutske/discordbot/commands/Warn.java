@@ -110,18 +110,18 @@ public class Warn extends ListenerAdapter {
                                 embed.setTitle("Warn");
                                 embed.setDescription(option.getAsUser().getAsMention() + " has been warned he has received 15 minutes of timeout");
                                 embed.addField("Warnings", "You now have 2 warnings!", true);
-                                event.getGuild().getMemberById(option.getAsUser().getId()).timeoutFor(15, TimeUnit.MINUTES);
+                                event.getGuild().getMemberById(option.getAsMember().getId()).timeoutFor(15, TimeUnit.MINUTES);
 
                                 event.replyEmbeds(embed.build()).queue();
 
                             } else if (myReader2.nextLine().equals("2")) {
                                 System.out.print("It's a 2");
-                                event.getGuild().getMemberById(option.getAsUser().getId()).ban(7, TimeUnit.DAYS);
+                                event.getGuild().getMemberById(option.getAsMember().getId()).ban(7, TimeUnit.DAYS);
                                 Files.delete(Path.of("Data/" + option.getAsUser().getId() + "/warn.txt"));
                                 EmbedBuilder embed = new EmbedBuilder();
                                 embed.setTitle("Warn");
-                                embed.setDescription(option.getAsUser().getAsMention() + "has been warned he has received 10 minutes of timeout");
-                                embed.addField("Warnings", "You now have 1 warn!", true);
+                                embed.setDescription(option.getAsUser().getAsMention() + " has been banned for 7 days");
+                                embed.addField("Warnings", "THe warns have been reset to zero, rejoin after 7 days to start fresh!", true);
 
                                 event.replyEmbeds(embed.build()).queue();
 
