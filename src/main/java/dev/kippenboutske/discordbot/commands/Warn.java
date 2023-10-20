@@ -95,7 +95,7 @@ public class Warn extends ListenerAdapter {
 
                                 try {
                                     myWriter.flush();
-                                    myWriter.write("1");
+                                    myWriter.write("2");
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }
