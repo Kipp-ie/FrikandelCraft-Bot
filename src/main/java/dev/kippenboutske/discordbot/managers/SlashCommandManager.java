@@ -38,7 +38,8 @@ public class SlashCommandManager extends ListenerAdapter {
                 Commands.slash("clear", "Clearing all messages")
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
         commands.add(Commands.slash( "warn", "Warn a user")
-                .addOption(OptionType.USER, "user", "Mention a user you want to warn", true));
+                .addOption(OptionType.USER, "user", "Mention a user you want to warn", true)
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
         event.getGuild().updateCommands().addCommands(commands).queue();
 
 
