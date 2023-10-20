@@ -36,6 +36,7 @@ public class Main {
                 new ApplyButtonListener(),
                 new TicketButtonListener(),
                 new ModalListener(),
+                new OnEnable(),
                 // Commands
                 new UserAvatar(),
                 new SadCat(),
@@ -44,7 +45,8 @@ public class Main {
                 new SetTicketCommand(),
                 new Embed(),
                 new Apply(),
-                new ServerStatus()
+                new ServerStatus(),
+                new Warn()
 
             );
 
