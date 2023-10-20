@@ -1,7 +1,9 @@
 package dev.kippenboutske.discordbot.managers;
 
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.DefaultMemberPermissions;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
@@ -16,19 +18,25 @@ public class SlashCommandManager extends ListenerAdapter {
     public void onGuildReady(GuildReadyEvent event) {
         List<CommandData> commands = new ArrayList<>();
 
-        commands.add(Commands.slash("test", "test command"));
         commands.add(Commands.slash( "avatar", "Grab the avatar by pinging a user!")
                         .addOption(OptionType.USER, "user", "Mention a user you want to grab the avatar from", true));
         commands.add(Commands.slash("sadcat", "Make a sad cat meme!")
                 .addOption(OptionType.STRING, "text", "Change the text of the Sad Cat meme"));
         commands.add(Commands.slash("oogway", "Create an Oogway quote!")
                 .addOption(OptionType.STRING, "text", "Change the oogway quote!"));
-        commands.add(Commands.slash("help", "Get a list of NebulaBot's commands!"));
-        commands.add(Commands.slash("settickets", "Create a ticket embed"));
-        commands.add(Commands.slash("embed", "Admin command to place embeds"));
-        commands.add(Commands.slash("setapply", "Admin command to place embed apply's"));
-        commands.add(Commands.slash("serverstatus", "Used to place a server status in the status channel"));
-
+        commands.add(Commands.slash("help", "Get a list of Lunaris's commands!"));
+        commands.add(
+                Commands.slash("settickets", "Create a ticket embed")
+                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
+        commands.add(
+                Commands.slash("embed", "Admin command to place embeds")
+                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
+        commands.add(
+                Commands.slash("setapply", "Admin command to place embed apply's")
+                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
+        commands.add(
+                Commands.slash("serverstatus", "Used to place a server status in the status channel")
+                        .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
         event.getGuild().updateCommands().addCommands(commands).queue();
 
 

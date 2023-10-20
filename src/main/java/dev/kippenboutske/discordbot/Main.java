@@ -34,12 +34,9 @@ public class Main {
                 // Listeners
                 new JoinListener(),
                 new ApplyButtonListener(),
-                new MessageReceivedListener(),
                 new TicketButtonListener(),
                 new ModalListener(),
-                // Lavalink
                 // Commands
-                new TestCommand(),
                 new UserAvatar(),
                 new SadCat(),
                 new Oogway(),

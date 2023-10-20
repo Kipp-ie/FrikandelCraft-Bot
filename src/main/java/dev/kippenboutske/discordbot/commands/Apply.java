@@ -24,7 +24,6 @@ public class Apply extends ListenerAdapter {
 
     @Override
     public void onStringSelectInteraction(@NotNull StringSelectInteractionEvent event) {
-        if (event.getMember().isOwner()) {
         if(event.getValues().get(0).equals("mediaapply")) {
             EmbedBuilder mediaembed = new EmbedBuilder();
             mediaembed.setTitle("TEST");
@@ -40,4 +39,4 @@ public class Apply extends ListenerAdapter {
 
         }
     }
-}
+
