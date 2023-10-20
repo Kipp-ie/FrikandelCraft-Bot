@@ -79,13 +79,6 @@ public class ServerStatus extends ListenerAdapter {
             // Extract the "players" field as a JsonObject
             JsonObject rootObject = root.getAsJsonObject();
             String online2 = rootObject.get("online").getAsString();
-            MessageHistory history = MessageHistory.getHistoryFromBeginning(event.getGuild().getTextChannelById("1164655353137483928")).complete();
-            List<Message> messagelist = history.getRetrievedHistory();
-            for(Message m: messagelist){
-                m.delete().queue();
-            }
-
-
 
             EmbedBuilder embed = new EmbedBuilder();
             if (online2.equals("true")) {
@@ -113,7 +106,7 @@ public class ServerStatus extends ListenerAdapter {
 
 
 
-            event.getGuild().getTextChannelById("1164655353137483928").sendMessageEmbeds(embed.build()).queue();
+            event.getGuild().getTextChannelById("1164655353137483928").editMessageEmbedsById("1164825821475770421", embed.build()).queue();
 
 
         } finally {

@@ -114,16 +114,18 @@ public class Warn extends ListenerAdapter {
 
                                 event.replyEmbeds(embed.build()).queue();
 
-                            } else if (myReader2.nextLine().equals("2")) {
+                            } else if (!myReader2.nextLine().equals("1")) {
                                 System.out.print("It's a 2");
-                                event.getGuild().ban(UserSnowflake.fromId(option.getAsMember().getId()), 7, TimeUnit.MINUTES).queue();
-                                Files.delete(Path.of("Data/" + option.getAsUser().getId() + "/warn.txt"));
                                 EmbedBuilder embed = new EmbedBuilder();
                                 embed.setTitle("Warn");
                                 embed.setDescription(option.getAsUser().getAsMention() + " has been banned for 7 days");
-                                embed.addField("Warnings", "THe warns have been reset to zero, rejoin after 7 days to start fresh!", true);
+                                embed.addField("Warnings", "The warns have been reset to zero, rejoin after 7 days to start fresh!", true);
 
                                 event.replyEmbeds(embed.build()).queue();
+                                Files.deleteIfExists(Path.of("Data/" + option.getAsUser().getId() + "/warns.txt"));
+                                event.getGuild().ban(UserSnowflake.fromId(option.getAsMember().getId()), 7, TimeUnit.MINUTES).queue();
+
+
 
                             }
 
