@@ -37,7 +37,7 @@ public class ServerStatus extends ListenerAdapter {
             scheduler = Executors.newSingleThreadScheduledExecutor();
 
             // Schedule a task to run every 10 seconds
-            scheduler.scheduleAtFixedRate(() -> updateServerStatus(event), 0, 10, TimeUnit.SECONDS);
+            scheduler.scheduleAtFixedRate(() -> updateServerStatus(event), 0, 60, TimeUnit.SECONDS);
         }
     }
 
