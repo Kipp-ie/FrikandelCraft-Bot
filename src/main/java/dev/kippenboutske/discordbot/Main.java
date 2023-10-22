@@ -37,8 +37,6 @@ public class Main {
                 new TicketButtonListener(),
                 new ModalListener(),
                 new OnEnable(),
-                new OnMessage(),
-                new LolCatListener(),
                 new MessageCheckSystem(),
                 // Commands
                 new UserAvatar(),
@@ -50,7 +48,6 @@ public class Main {
                 new Apply(),
                 new ServerStatus(),
                 new Warn()
-
             );
 
 

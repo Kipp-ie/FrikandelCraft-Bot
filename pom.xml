@@ -18,9 +18,20 @@
             <name>m2-dv8tion</name>
             <url>https://m2.dv8tion.net/releases</url>
         </repository>
+        <repository>
+            <id>clojars</id>
+            <name>Clojars</name>
+            <url>https://clojars.org/repo/</url>
+        </repository>
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>clojure-interop</groupId>
+            <artifactId>java.awt</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
