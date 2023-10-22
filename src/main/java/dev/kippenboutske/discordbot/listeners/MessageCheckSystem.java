@@ -28,7 +28,7 @@ public class MessageCheckSystem extends ListenerAdapter {
         if (kkk || kanker || tyfus || kkr || kank3r || kanker3 || fuck || fucking || fuck2 || kanker2) {
             if (!event.getMember().hasPermission(Permission.ADMINISTRATOR)) {
                 event.getGuild().timeoutFor(UserSnowflake.fromId(event.getAuthor().getId()), 8, TimeUnit.MINUTES).queue();
-                event.getMessage().delete();
+                event.getMessage().delete().queue();
                 EmbedBuilder dmuser = new EmbedBuilder();
                 dmuser.setTitle("Flagged");
                 dmuser.setDescription("You have been flagged by our moderation system");
