@@ -26,7 +26,7 @@ public class Main {
         DefaultShardManagerBuilder builder = DefaultShardManagerBuilder.createDefault(token);
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.setActivity(Activity.watching("Happy Spooktober!"));
-        builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES);
+        builder.enableIntents(GatewayIntent.GUILD_MEMBERS, GatewayIntent.GUILD_MESSAGES, GatewayIntent.DIRECT_MESSAGES, GatewayIntent.MESSAGE_CONTENT);
         shardManager = builder.build();
         shardManager.addEventListener(
                 // Manager
@@ -37,6 +37,8 @@ public class Main {
                 new TicketButtonListener(),
                 new ModalListener(),
                 new OnEnable(),
+                new OnMessage(),
+                new LolCatListener(),
                 // Commands
                 new UserAvatar(),
                 new SadCat(),
