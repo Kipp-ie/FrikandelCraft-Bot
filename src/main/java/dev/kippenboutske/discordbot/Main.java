@@ -39,6 +39,7 @@ public class Main {
                 new OnEnable(),
                 new OnMessage(),
                 new LolCatListener(),
+                new MessageCheckSystem(),
                 // Commands
                 new UserAvatar(),
                 new SadCat(),
