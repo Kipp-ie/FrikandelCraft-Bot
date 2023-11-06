@@ -49,10 +49,12 @@ public class MessageCheckSystem extends ListenerAdapter {
                 }
             } else {
                 if (Files.exists(Path.of("Data/" + event.getMember().getId()))) {
-                    if (Files.exists(Path.of("Data/" + event.getMember().getId() + "xp.txt"))) {
+                    if (Files.exists(Path.of("Data/" + event.getMember().getId() + "/xp.txt"))) {
+                        System.out.print("Xp file found");
 
-                    } else if (!Files.exists(Path.of("Data/" +event.getMember().getId() + "/xp.txt"))) {
-                        File xptxt = new File("Data/" + event.getMember().getId() + "/xp.txt");
+                    } else if (!Files.exists(Path.of("Data/" + event.getMember().getId() + "/xp.txt"))) {
+                        File ikgafuckingdoodvanbinnen = new File("Data/" + event.getMember().getUser().getId() + "/xp.txt");
+                        System.out.print("File created");
                     }
 
                 } else {
