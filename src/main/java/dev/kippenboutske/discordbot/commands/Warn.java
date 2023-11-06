@@ -1,6 +1,7 @@
 package dev.kippenboutske.discordbot.commands;
 
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.UserSnowflake;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
@@ -18,6 +19,9 @@ public class Warn extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         if (event.getName().equals("warn")) {
             OptionMapping option = event.getOption("user");
+            if (option.getAsMember().hasPermission(Permission.ADMINISTRATOR)) {
+                event.reply("User has administrator permissions, aborting action.").queue();
+            } else {
             if (!Files.exists(Path.of("Data"))) {
                 System.out.print("Warning system experienced an error, please check the code!");
             } else if (Files.exists(Path.of("Data"))) {
@@ -144,5 +148,5 @@ public class Warn extends ListenerAdapter {
                 }
             }
         }
-    }
+    }}
 }
