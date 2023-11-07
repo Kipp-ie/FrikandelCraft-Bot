@@ -48,7 +48,8 @@ public class Main {
                 new Apply(),
                 new ServerStatus(),
                 new Warn(),
-                new Datadebug()
+                new Datadebug(),
+                new Rank()
             );
 
 

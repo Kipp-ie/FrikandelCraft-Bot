@@ -46,6 +46,8 @@ public class SlashCommandManager extends ListenerAdapter {
         commands.add(Commands.slash("test", "test"));
         commands.add(Commands.slash("datadebug", "Data Debug")
                 .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)));
+        commands.add(Commands.slash( "rank", "Check rank info from a user!")
+                .addOption(OptionType.USER, "user", "Mention the user you want the rank from", true));
 
         event.getGuild().updateCommands().addCommands(commands).queue();
 

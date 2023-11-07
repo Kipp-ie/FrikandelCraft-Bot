@@ -96,6 +96,27 @@ public class MessageCheckSystem extends ListenerAdapter {
                             embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
                             embed.setDescription("You have reached Level 1! You received the Level 1 role!");
                             event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                            FileWriter filewriterlevel = null;
+                            try {
+                                filewriterlevel = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/level.txt")));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.write("1");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.flush();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.close();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         } else if (xpfile.contains("25")) {
                             EmbedBuilder embed = new EmbedBuilder();
                             embed.setTitle("GG " + event.getMember().getEffectiveName() + "!");
@@ -114,23 +135,29 @@ public class MessageCheckSystem extends ListenerAdapter {
                     } else if (!Files.exists(Path.of("Data/" + event.getMember().getId() + "/xp.txt"))) {
                         try {
                             new File("Data/" + event.getMember().getUser().getId() + "/xp.txt").createNewFile();
+                            new File("Data/" + event.getMember().getUser().getId() + "/level.txt").createNewFile();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                         FileWriter myWriter = null;
+                        FileWriter myWriter2 = null;
                         try {
                             myWriter = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/xp.txt")));
+                            myWriter2 = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/level.txt")));
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                         try {
                             myWriter.write("1");
+                            myWriter2.write("0");
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
                         try {
                             myWriter.flush();
                             myWriter.close();
+                            myWriter2.flush();
+                            myWriter2.close();
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
