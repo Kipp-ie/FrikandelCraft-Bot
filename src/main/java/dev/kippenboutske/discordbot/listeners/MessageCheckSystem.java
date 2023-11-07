@@ -123,12 +123,54 @@ public class MessageCheckSystem extends ListenerAdapter {
                             embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
                             embed.setDescription("You have reached Level 2!");
                             event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                            FileWriter filewriterlevel = null;
+                            try {
+                                filewriterlevel = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/level.txt")));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.write("2");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.flush();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.close();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         } else if (xpfile.contains("45")) {
                             EmbedBuilder embed = new EmbedBuilder();
                             embed.setTitle("GG " + event.getMember().getEffectiveName() + "!");
                             embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
                             embed.setDescription("You have reached Level 3!");
                             event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                            FileWriter filewriterlevel = null;
+                            try {
+                                filewriterlevel = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/level.txt")));
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.write("3");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.flush();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                            try {
+                                filewriterlevel.close();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
                         }
 
 

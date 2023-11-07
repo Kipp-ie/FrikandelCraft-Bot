@@ -34,11 +34,21 @@ public class Rank extends ListenerAdapter {
                 if (level.equals("0")) {
                     EmbedBuilder embed = new EmbedBuilder();
                     embed.setTitle(event.getOption("user").getAsUser().getEffectiveName() + "is level 0");
-                    embed.setDescription(xp + "/10 untill level 1!");
-                    event.replyEmbeds(embed.build()).queue();/
+                    embed.setDescription(xp + "/10 until level 1!");
+                    event.replyEmbeds(embed.build()).queue();
                 } else if (level.equals("1")) {
+                    int xptotal = Math.subtractExact(Integer.parseInt(xp), 10);
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.setTitle(event.getOption("user").getAsUser().getEffectiveName() + " is level 1");
+                    embed.setDescription(xptotal + "/15 until level 2!");
+                    event.replyEmbeds(embed.build()).queue();
                     
                 } else if (level.equals("2")) {
+                    int xptotal = Math.subtractExact(Integer.parseInt(xp), 25);
+                    EmbedBuilder embed = new EmbedBuilder();
+                    embed.setTitle(event.getOption("user").getAsUser().getEffectiveName() + " is level 2");
+                    embed.setDescription(xptotal + "/20XP until level 3!");
+                    event.replyEmbeds(embed.build()).queue();
                     
                 }
 
