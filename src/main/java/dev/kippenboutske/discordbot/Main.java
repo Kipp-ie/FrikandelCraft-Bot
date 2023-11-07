@@ -47,7 +47,8 @@ public class Main {
                 new Embed(),
                 new Apply(),
                 new ServerStatus(),
-                new Warn()
+                new Warn(),
+                new Datadebug()
             );
 
 

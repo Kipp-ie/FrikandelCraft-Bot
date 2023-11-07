@@ -10,8 +10,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class MessageCheckSystem extends ListenerAdapter {
@@ -51,14 +56,111 @@ public class MessageCheckSystem extends ListenerAdapter {
                 if (Files.exists(Path.of("Data/" + event.getMember().getId()))) {
                     if (Files.exists(Path.of("Data/" + event.getMember().getId() + "/xp.txt"))) {
                         System.out.print("Xp file found");
+                        Scanner myReader = null;
+                        try {
+                            myReader = new Scanner(Path.of("Data/" + event.getMember().getId() + "/xp.txt"));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        String test = myReader.nextLine();
+                        System.out.print(test);
+                        int xptotal = Integer.sum(Integer.parseInt(test), 1);
+                        System.out.print(" " + xptotal);
+                        FileWriter filewriter = null;
+                        try {
+                            filewriter = new FileWriter("Data/" + event.getMember().getId() + "/xp.txt");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            filewriter.write(String.valueOf(xptotal));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            filewriter.close();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Scanner myReader2 = null;
+                        try {
+                            myReader2 = new Scanner(Path.of("Data/" + event.getMember().getId() + "/xp.txt"));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        String xpfile = myReader2.nextLine();
+                        System.out.print(xpfile);
+                        if (xpfile.contains("10")) {
+                            EmbedBuilder embed = new EmbedBuilder();
+                            embed.setTitle("GG " + event.getMember().getEffectiveName() + "!");
+                            embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
+                            embed.setDescription("You have reached Level 1! You received the Level 1 role!");
+                            event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                        } else if (xpfile.contains("25")) {
+                            EmbedBuilder embed = new EmbedBuilder();
+                            embed.setTitle("GG " + event.getMember().getEffectiveName() + "!");
+                            embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
+                            embed.setDescription("You have reached Level 2!");
+                            event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                        } else if (xpfile.contains("45")) {
+                            EmbedBuilder embed = new EmbedBuilder();
+                            embed.setTitle("GG " + event.getMember().getEffectiveName() + "!");
+                            embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
+                            embed.setDescription("You have reached Level 3!");
+                            event.getChannel().sendMessageEmbeds(embed.build()).queue();
+                        }
+
 
                     } else if (!Files.exists(Path.of("Data/" + event.getMember().getId() + "/xp.txt"))) {
-                        File ikgafuckingdoodvanbinnen = new File("Data/" + event.getMember().getUser().getId() + "/xp.txt");
+                        try {
+                            new File("Data/" + event.getMember().getUser().getId() + "/xp.txt").createNewFile();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        FileWriter myWriter = null;
+                        try {
+                            myWriter = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/xp.txt")));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            myWriter.write("1");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            myWriter.flush();
+                            myWriter.close();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                }
                         System.out.print("File created");
+                    } else {
+                    new File("Data/" + event.getMember().getId()).mkdir();
+                    try {
+                        new File("Data/" + event.getMember().getId() + "/xp.txt").createNewFile();
+                        FileWriter myWriter = null;
+                        try {
+                            myWriter = new FileWriter(String.valueOf(Path.of("Data/" + event.getMember().getId() + "/xp.txt")));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            myWriter.write("1");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        try {
+                            myWriter.flush();
+                            myWriter.close();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
 
-                } else {
-                    return;
                 }
             }
         }

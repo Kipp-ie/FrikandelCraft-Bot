@@ -44,6 +44,8 @@ public class SlashCommandManager extends ListenerAdapter {
                 Commands.slash("serverstatus", "LunarisMC server status")
                         .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.MANAGE_CHANNEL, Permission.MODERATE_MEMBERS)));
         commands.add(Commands.slash("test", "test"));
+        commands.add(Commands.slash("datadebug", "Data Debug")
+                .setDefaultPermissions(DefaultMemberPermissions.enabledFor(Permission.ADMINISTRATOR)));
 
         event.getGuild().updateCommands().addCommands(commands).queue();
 
