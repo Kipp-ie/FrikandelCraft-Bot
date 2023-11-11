@@ -94,7 +94,7 @@ public class MessageCheckSystem extends ListenerAdapter {
                             EmbedBuilder embed = new EmbedBuilder();
                             embed.setTitle("GG " + event.getMember().getEffectiveName() + "!");
                             embed.setThumbnail(event.getMember().getUser().getAvatarUrl());
-                            embed.setDescription("You have reached Level 1! You received the Level 1 role!");
+                            embed.setDescription("You have reached Level 1!");
                             event.getChannel().sendMessageEmbeds(embed.build()).queue();
                             FileWriter filewriterlevel = null;
                             try {
